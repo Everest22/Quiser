@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:quiser/components/background.dart';
 import 'package:quiser/screens/register/register.dart';
+import '../homepage/homepage.dart';
 
-class LoginScreen extends StatelessWidget {
+
+class LoginScreen extends StatefulWidget {
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -62,7 +70,9 @@ class LoginScreen extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               margin: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
-              child: RaisedButton(onPressed: (){},
+              child: RaisedButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => homepage()));
+              },
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
                 textColor: Colors.white,
                 padding: const EdgeInsets.all(0),
