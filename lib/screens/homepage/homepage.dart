@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiser/components/background.dart';
 import 'package:quiser/components/bgfile.dart';
+
+import '../upload/bookupload.dart';
+import '../upload/noteupload.dart';
 // import 'package:quiser/components/background.dart';
 // import 'package:quiser/components/navbar.dart';
 
@@ -149,7 +152,7 @@ class _homepageState extends State<homepage> {
           backgroundColor: Colors.white,
           buttonBackgroundColor: Color(color),
           animationCurve: Curves.bounceInOut,
-          animationDuration: const Duration(milliseconds: 200),
+          animationDuration: const Duration(milliseconds: 280),
           color: Color(color),
           index: 0,
           items: <Widget>[
@@ -160,11 +163,66 @@ class _homepageState extends State<homepage> {
             Icon(Icons.person_outlined,size: 25,color: Colors.white,),
           ],
         onTap: (index){
-            setState(() {
-
-            });
+            print("index ${index}");
+            switch(index){
+              case 0:
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homepage()));
+                  break;
+              case 2:
+                showDialog(context: context,
+                    builder: (BuildContext context){
+                  return dialogbox();
+                    }
+                );
+                break;
+            }
         },
       ),
     );
   }
 }
+
+class dialogbox extends StatelessWidget {
+  const dialogbox({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Container(
+        height: 200,
+        decoration: BoxDecoration(
+          color: Color(0xff456672),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              alignment: Alignment.center,
+              child: InkWell(
+                  child: Icon(Icons.book,size: 150,color: Colors.white70),
+                onTap: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => bookupload()));
+                },
+              ),
+            ),
+            // ),
+            Container(
+              child: InkWell(
+                  child: Icon(Icons.note_add_outlined,size:150, color: Colors.white70),
+                onTap: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => noteupload()));
+                },
+              ),
+            ),
+          ],
+        )
+      ),
+      );
+  }
+}
+
