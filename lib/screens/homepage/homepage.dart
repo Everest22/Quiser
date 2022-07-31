@@ -1,9 +1,11 @@
+import 'dart:ui';
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiser/components/background.dart';
+//import 'package:quiser/components/background.dart';
 import 'package:quiser/components/bgfile.dart';
-
+import 'package:quiser/screens/browsingpage/browsingpage.dart';
 import '../upload/bookupload.dart';
 import '../upload/noteupload.dart';
 // import 'package:quiser/components/background.dart';
@@ -85,26 +87,31 @@ class _homepageState extends State<homepage> {
                   children: [
                     Column(
                       children: [
-                        Container(
-                          alignment: Alignment.center,
-                          // height: double.maxFinite,
-                          //color: Colors.blue,
-                          margin: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(color).withOpacity(0.2),
-                                spreadRadius: 5,
-                                blurRadius: 5,
-                                offset: Offset(2, 1),
-                              )
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BrowsingPage()));
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            // height: double.maxFinite,
+                            //color: Colors.blue,
+                            margin: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(color).withOpacity(0.2),
+                                  spreadRadius: 5,
+                                  blurRadius: 5,
+                                  offset: Offset(2, 1),
+                                )
+                              ],
+                            ),
+                            child: Icon(Icons.book,size: 50,color: Color(color)),
+                            height: 150,
+                            width: 130,
                           ),
-                          child: Icon(Icons.book,size: 50,color: Color(color)),
-                          height: 150,
-                          width: 130,
                         ),
                         Container(
                           child: Text("Book",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
@@ -150,7 +157,7 @@ class _homepageState extends State<homepage> {
 
       bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: Colors.white,
-          buttonBackgroundColor: Color(color),
+          buttonBackgroundColor: Color.fromARGB(255, 255, 136, 34),
           animationCurve: Curves.bounceInOut,
           animationDuration: const Duration(milliseconds: 280),
           color: Color(color),
@@ -188,41 +195,55 @@ class dialogbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Container(
-        height: 200,
-        decoration: BoxDecoration(
-          color: Color(0xff456672),
+    return new BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 10,sigmaY: 10),
+      child: Dialog(
+        insetAnimationDuration: const Duration(milliseconds: 300),
+        insetAnimationCurve: Curves.linear,
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: InkWell(
-                  child: Icon(Icons.book,size: 150,color: Colors.white70),
-                onTap: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => bookupload()));
-                },
+        child: Container(
+          height: 200,
+          width: size.width,
+          decoration: BoxDecoration(
+            gradient: new LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 255, 136, 34),
+                  Color.fromARGB(255, 255, 177, 41)
+                ]),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Container(
+                //alignment: Alignment.center,
+                child: InkWell(
+                    child: Icon(Icons.book,color: Colors.white,size: size.height/5),
+                  onTap: (){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => bookupload()));
+                  },
+                  focusColor: Colors.deepPurple,
+                ),
               ),
-            ),
-            // ),
-            Container(
-              child: InkWell(
-                  child: Icon(Icons.note_add_outlined,size:150, color: Colors.white70),
-                onTap: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => noteupload()));
-                },
+              // ),
+              Container(
+
+                child: InkWell(
+                    child: Icon(Icons.note_add_outlined, color: Colors.white,size: size.height/5,),
+                  onTap: (){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => noteupload()));
+                  },
+                ),
               ),
-            ),
-          ],
-        )
-      ),
-      );
+            ],
+          )
+        ),
+        ),
+    );
   }
 }
 
