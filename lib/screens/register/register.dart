@@ -207,7 +207,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                    (onValidate){
                      if (onValidate == null) {
-                       return "Please select department";
+                       return "Please select semester";
                      } else {
                        return null;
                      }
