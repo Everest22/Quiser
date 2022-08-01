@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -203,7 +202,7 @@ class dialogbox extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-<<<<<<< Updated upstream
+
         child: Container(
           height: 200,
           width: size.width,
@@ -239,32 +238,12 @@ class dialogbox extends StatelessWidget {
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => noteupload()));
                   },
                 ),
-=======
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: InkWell(
-                  child: Icon(Icons.book,size: 130,color: Colors.black87),
-                onTap: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => bookupload()));
-                },
-              ),
-            ),
-            // ),
-            Container(
-              child: InkWell(
-                  child: Icon(Icons.note_add_outlined,size:130, color: Colors.black87),
-                onTap: (){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => noteupload()));
-                },
->>>>>>> Stashed changes
-              ),
-            ],
-          )
+
         ),
+    ],
+    ),
         ),
+      )
     );
   }
 }

@@ -1,8 +1,8 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiser/components/bgfile.dart';
-import 'package:quiser/screens/homepage/homepage.dart';
+
 import 'package:quiser/screens/upload/noteupload.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 
@@ -274,57 +274,6 @@ class _bookuploadState extends State<bookupload> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.white,
-        buttonBackgroundColor: Color(color),
-        animationCurve: Curves.bounceInOut,
-        animationDuration: const Duration(milliseconds: 280),
-        color: Color(color),
-        index: 2,
-        items: <Widget>[
-          Icon(
-            Icons.home_filled,
-            size: 25,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.upload_file,
-            size: 25,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.add,
-            size: 25,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.downloading_rounded,
-            size: 25,
-            color: Colors.white,
-          ),
-          Icon(
-            Icons.person_outlined,
-            size: 25,
-            color: Colors.white,
-          ),
-        ],
-        onTap: (index) {
-          print("index ${index}");
-          switch (index) {
-            case 0:
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => homepage()));
-              break;
-            case 2:
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return dialogbox();
-                  });
-              break;
-          }
-        },
       ),
     );
   }
